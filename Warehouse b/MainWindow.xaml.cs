@@ -25,13 +25,30 @@ namespace Warehouse_b
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
+
+            string username = txtUsername.Text;
+            string paswoord = txtPaswoord.Text;
+            if (txtUsername.Text == "" || txtPaswoord.Text == "")
+            {
+                MessageBox.Show("Please fill in User name and Pasword ");
+            }
+
+            using (WarehouseEntities cxt = new WarehouseEntities())
+            {
+                var checkcode = cxt.Paswoords.Where(p => p.UserName == username && p.UserPaswoord == paswoord).Count();
+                if (checkcode == 1)
+                {
+                    
+                }
+                else
+                {
+                    MessageBox.Show("User name or Paswoord is not corect");
+                }
+            }
 
         }
     }
